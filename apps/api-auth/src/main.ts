@@ -1,14 +1,20 @@
 import express from 'express';
+const cors = require('cors');
+import { environment } from './environment/environment';
 
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+import * as bodyParser from 'body-parser';
+import bindRoutes from './app/routes';
+const port = environment.PORT;
 
 const app = express();
-
-app.get('/', (req, res) => {
-  res.send({ message: 'Hello API' });
-});
-
-app.listen(port, host, () => {
-  console.log(`[ ready ] http://${host}:${port}`);
+app.use(cors({
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": true,
+}));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true })); 
+bindRoutes(app);
+app.listen(port, () => {
+  console.log(`Auth application running on port:${port}`);
 });

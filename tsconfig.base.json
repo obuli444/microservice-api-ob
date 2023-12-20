@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ccl-dopz-api/constants": ["libs/core/constants/src/index.ts"],
+      "@ccl-dopz-api/logger": ["libs/core/logger/src/index.ts"],
+      "@ccl-dopz-api/server": ["libs/core/server/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
