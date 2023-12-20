@@ -1,18 +1,30 @@
 import express = require('express');
 
+import {AppLogger} from '@ccl-dopz-api/logger';
+
+import {AppRequest,AppResponse} from '@ccl-dopz-api/app-interface';
+
 export default class AppServer {
 
   private server: express.Application;
-  environment: Record<string, unknown>
+  environment: Record<string, unknown>;
   private port: number;
+  logger: AppLogger;
 
   constructor(port: number, environment) {
+    
     this.port = port;
     this.server = express();
-    this.environment = environment
+    this.environment = environment;
+    this.logger = new AppLogger('server', '', environment);
   }
 
   getApplication() {
+    this.server.use((req: AppRequest, res: AppResponse, next) => {
+      const tokenKey = req.headers["Authorization"] as string;
+      req.logger = new AppLogger('request', tokenKey, this.environment);
+      next();
+    });
     return this.server;
   }
 

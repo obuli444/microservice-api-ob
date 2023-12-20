@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ccl-dopz-api/app-interface": [
+        "libs/interfaces/app-interface/src/index.ts"
+      ],
       "@ccl-dopz-api/constants": ["libs/core/constants/src/index.ts"],
       "@ccl-dopz-api/logger": ["libs/core/logger/src/index.ts"],
       "@ccl-dopz-api/server": ["libs/core/server/src/index.ts"]

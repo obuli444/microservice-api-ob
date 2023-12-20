@@ -1,1 +1,3 @@
-export * from './lib/logger';
+import AppLogger from './lib/logger';
+
+export {AppLogger};
