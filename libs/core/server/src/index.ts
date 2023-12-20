@@ -1,1 +1,5 @@
-export * from './lib/server';
+import AppServer from './lib/app-server';
+
+export {
+    AppServer
+}
