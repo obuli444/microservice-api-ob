@@ -25,10 +25,11 @@ export default async function Signin(req: AppRequest, res: AppResponse) {
             })
         }).catch((error) => {
             const errordata = error.response ? error.response.data : error.message;
+            const {error_description} = errordata;
             res.json({
                 status: false,
-                message: 'login false',
-                data: errordata
+                message: error_description,
+                data: null
             })
         });
     }
