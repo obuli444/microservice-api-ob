@@ -20,7 +20,8 @@
       ],
       "@ccl-dopz-api/constants": ["libs/core/constants/src/index.ts"],
       "@ccl-dopz-api/logger": ["libs/core/logger/src/index.ts"],
-      "@ccl-dopz-api/server": ["libs/core/server/src/index.ts"]
+      "@ccl-dopz-api/server": ["libs/core/server/src/index.ts"],
+      "@ccl-dopz-api/utils": ["libs/core/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

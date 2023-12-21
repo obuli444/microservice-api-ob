@@ -1,6 +1,5 @@
 import * as winston from 'winston';
 import * as uuid from "uuid";
-import * as os from "os";
 import _ from 'lodash';
 
 
