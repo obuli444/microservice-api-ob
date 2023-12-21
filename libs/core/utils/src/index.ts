@@ -1,1 +1,4 @@
-export * from './lib/utils';
+import CommonService from './common/common.service'
+
+
+export {CommonService};
