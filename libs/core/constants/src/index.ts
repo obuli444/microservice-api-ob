@@ -1,1 +1,4 @@
-export * from './lib/constants';
+import * as AppConstants from './lib/constants';
+
+
+export {AppConstants}
