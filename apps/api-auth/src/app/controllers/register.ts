@@ -6,26 +6,28 @@ import { AppConstants } from '@ccl-dopz-api/constants';
 import { KEYCLOAK_ENDPOINTS } from "../endpoints/keycloak";
 
 
-export class userSignoutController {
+export class userSignupController {
 
 
-    async signOutSession(req: AppRequest, res: AppResponse) {
+    async userSignup(req: AppRequest, res: AppResponse) {
         try {
-            const { client_id, client_secret, refreshtoken,realm} = req.body;
-            const { HOST, REALM, SIGNOUT } = KEYCLOAK_ENDPOINTS;
-            const apiUrl = `${HOST}${REALM.AUTH}/${realm}${SIGNOUT}`;
+            const { realm,username,email,enabled,credentials} = req.body;
+            const authToken:string = req.headers.authorization || null;
+            const { HOST, REALM, USERS } = KEYCLOAK_ENDPOINTS;
+            const apiUrl = `${HOST}${REALM.ADMIN}/${realm}${USERS.COMMON}`;
             const data = {
-                client_id,
-                client_secret,
-                token : refreshtoken
+                username,
+                email,
+                enabled,
+                credentials,
             };
             const encodedData = querystring.stringify(data);
-            const axiosConfig = await CommonService.getAxiosConfigs(AppConstants.HTTP_METHODS[1], apiUrl, '', encodedData);
+            const axiosConfig = await CommonService.getAxiosConfigs(AppConstants.HTTP_METHODS[1], apiUrl, authToken, encodedData);
             await axios.request(axiosConfig).then((response) => {
                 const data = response.data;
                 res.json({
                     status: true,
-                    message: 'User logout success',
+                    message: 'User create successfully',
                     data: null
                 })
             }).catch((error) => {
@@ -41,7 +43,7 @@ export class userSignoutController {
         catch (e) {
             res.json({
                 status: false,
-                message: 'User logout error',
+                message: 'User create error',
                 data: e
             })
         }
@@ -54,4 +56,4 @@ export class userSignoutController {
 }
 
 
-export default new userSignoutController();
+export default new userSignupController();

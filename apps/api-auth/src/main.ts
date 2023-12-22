@@ -22,11 +22,7 @@ import {AppServer} from '@ccl-dopz-api/server'
 const port = environment.PORT;
 const appserver = new AppServer(port,environment);
 const app = appserver.getApplication();
-app.use(cors({
-  "origin": "*",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": true,
-}));
+app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true })); 
 bindRoutes(app);

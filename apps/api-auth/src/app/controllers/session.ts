@@ -13,14 +13,14 @@ export class userSessionController {
         try {
             const { client_id, client_secret, refreshtoken,realm} = req.body;
             const { HOST, REALM, CHECK_TOCKEN } = KEYCLOAK_ENDPOINTS;
-            const tokenUrl = `${HOST}${REALM.AUTH}/${realm}${CHECK_TOCKEN}`;
+            const apiUrl = `${HOST}${REALM.AUTH}/${realm}${CHECK_TOCKEN}`;
             const data = {
                 client_id,
                 client_secret,
                 token : refreshtoken
             };
             const encodedData = querystring.stringify(data);
-            const axiosConfig = await CommonService.getAxiosConfigs(AppConstants.HTTP_METHODS[1], tokenUrl, '', encodedData);
+            const axiosConfig = await CommonService.getAxiosConfigs(AppConstants.HTTP_METHODS[1], apiUrl, '', encodedData);
             await axios.request(axiosConfig).then((response) => {
                 const data = response.data;
                 res.json({

@@ -11,9 +11,11 @@ const KEYCLOAK_ENDPOINTS = Object.freeze({
     CHECK_TOCKEN : '/protocol/openid-connect/token/introspect',
     SIGNUP : '',
     SIGNOUT:'/protocol/openid-connect/logout',
+    RESET_PASSWORD: '/login-actions/reset-credentials',
     USERS:{
         LIST : '/users',
-        SESSION : '/sessions'
+        SESSION : '/sessions',
+        COMMON:'/users'
 
     }
 });

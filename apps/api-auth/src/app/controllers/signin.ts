@@ -9,7 +9,7 @@ export default async function Signin(req: AppRequest, res: AppResponse) {
     try {
         const { client_id, client_secret, username, password, realm } = req.body;
         const { HOST, REALM, SIGNIN } = KEYCLOAK_ENDPOINTS;
-        const tokenUrl = `${HOST}${REALM.AUTH}/${realm}${SIGNIN}`;
+        const apiUrl = `${HOST}${REALM.AUTH}/${realm}${SIGNIN}`;
         const data = {
             grant_type: 'password',
             client_id,
@@ -18,7 +18,7 @@ export default async function Signin(req: AppRequest, res: AppResponse) {
             password: password,
         };
         const encodedData = querystring.stringify(data);
-        const axiosConfig = await CommonService.getAxiosConfigs(AppConstants.HTTP_METHODS[1], tokenUrl, '', encodedData);
+        const axiosConfig = await CommonService.getAxiosConfigs(AppConstants.HTTP_METHODS[1], apiUrl, '', encodedData);
         await axios.request(axiosConfig).then((response) => {
             const data = response.data;
             res.json({
