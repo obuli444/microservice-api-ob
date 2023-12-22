@@ -8,8 +8,9 @@ const KEYCLOAK_ENDPOINTS = Object.freeze({
         ADMIN : '/admin/realms'
     },
     SIGNIN : '/protocol/openid-connect/token',
-    CHECK_TOCKEN : '/protocol/openid-connect/token/retrospect',
+    CHECK_TOCKEN : '/protocol/openid-connect/token/introspect',
     SIGNUP : '',
+    SIGNOUT:'/protocol/openid-connect/logout',
     USERS:{
         LIST : '/users',
         SESSION : '/sessions'
